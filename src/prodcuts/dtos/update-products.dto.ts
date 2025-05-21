@@ -5,6 +5,7 @@ import {
   IsString,
   Length,
   Min,
+  MinLength,
 } from 'class-validator';
 export class UpdateProductDto {
   @IsString({ message: 'title must be a string' })
@@ -17,6 +18,7 @@ export class UpdateProductDto {
 
   @IsString()
   @IsOptional()
+  @MinLength(5)
   description?: string;
 
   @IsNumber()

@@ -1,4 +1,11 @@
-import { IsNotEmpty, IsNumber, IsString, Length, Min } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  Length,
+  Min,
+  MinLength,
+} from 'class-validator';
 // class or interface or type
 export class CreateProductDto {
   @IsString({ message: 'title must be a string' })
@@ -9,6 +16,7 @@ export class CreateProductDto {
   title: string;
 
   @IsString()
+  @MinLength(5)
   description: string;
 
   @IsNumber()
