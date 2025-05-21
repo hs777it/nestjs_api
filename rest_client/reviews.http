@@ -1,0 +1,3 @@
+### Get All reviews
+GET http://localhost:5000/api/reviews
+

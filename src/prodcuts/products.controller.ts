@@ -15,24 +15,29 @@ import { ProductService } from './products.service';
 @Controller('api/products')
 export class ProductsController {
   // @IMPORTANT NOTE: this is considered a bad practice, we will use dependency injection to fix this
-  private prorductServer: ProductService = new ProductService();
+  // private ProductService: ProductService = new ProductService();
+
+  // private ProductService: ProductService;
+  // constructor(ProductService: ProductService) {this.ProductService = ProductService;}
+  // OR
+  constructor(private readonly ProductService: ProductService) {}
 
   // GET: ~/api/products
   @Get()
   public getAllProducts() {
-    return this.prorductServer.getAll();
+    return this.ProductService.getAll();
   }
 
   // GET: ~/api/products/:id
   @Get(':id')
   public getSingleProduct(@Param('id', ParseIntPipe) id: number) {
-    return this.prorductServer.getOneBy(id);
+    return this.ProductService.getOneBy(id);
   }
 
   // POST ~/api/products
   @Post()
   public createNewProduct(@Body() body: CreateProductDto) {
-    return this.prorductServer.createProduct(body);
+    return this.ProductService.createProduct(body);
   }
 
   // PUT: ~/api/products/:id
@@ -41,12 +46,12 @@ export class ProductsController {
     @Param('id', ParseIntPipe) id: string,
     @Body() body: UpdateProductDto,
   ) {
-    return this.prorductServer.update(id, body);
+    return this.ProductService.update(id, body);
   }
 
   // DELETE: ~/api/products/:id
   @Delete(':id')
   public deleteProduct(@Param('id', ParseIntPipe) id: number) {
-    return this.prorductServer.delete(id);
+    return this.ProductService.delete(id);
   }
 }
