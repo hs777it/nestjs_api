@@ -3,7 +3,7 @@ GET http://localhost:5000/api/products
 
 
 ### Get Single Product
-GET http://localhost:5000/api/products/1
+GET http://localhost:5000/api/products/10
 ###
 GET http://localhost:5000/api/products/hello
 
@@ -12,8 +12,9 @@ POST http://localhost:5000/api/products
 Content-Type: application/json
 
 {
-"title":"iphone 5",
-"price": 600
+"title":"Dell laptop",
+"description":"about this laptop",
+"price": 700
 }
 
 ### Update Product

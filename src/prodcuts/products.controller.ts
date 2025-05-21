@@ -43,7 +43,7 @@ export class ProductsController {
   // PUT: ~/api/products/:id
   @Put(':id')
   public updateProduct(
-    @Param('id', ParseIntPipe) id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateProductDto,
   ) {
     return this.ProductService.update(id, body);

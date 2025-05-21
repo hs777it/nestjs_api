@@ -8,6 +8,9 @@ export class CreateProductDto {
   @Length(3, 120, { message: 'title must be between 3 and 120 characters' })
   title: string;
 
+  @IsString()
+  description: string;
+
   @IsNumber()
   @IsNotEmpty()
   @Min(0, { message: 'price must be greater than 0' })

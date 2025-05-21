@@ -11,9 +11,13 @@ export class UpdateProductDto {
   @IsNotEmpty({ message: 'title is required' })
   //   @MinLength(3)
   //   @MaxLength(120)
-  @Length(3, 120, { message: 'title must be between 3 and 120 characters' })
+  @Length(3, 150, { message: 'title must be between 3 and 120 characters' })
   @IsOptional()
   title?: string;
+
+  @IsString()
+  @IsOptional()
+  description?: string;
 
   @IsNumber()
   @IsNotEmpty()

@@ -1,9 +1,12 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
+import { UsersModule } from 'src/users/users.module';
 import { ReviewController } from './reviews.controller';
-import { ReviewService } from './reviews.service';
+import { ReviewsService } from './reviews.service';
 
 @Module({
   controllers: [ReviewController],
-  providers: [ReviewService],
+  providers: [ReviewsService],
+  exports: [ReviewsService],
+  imports: [forwardRef(() => UsersModule)],
 })
-export class ReviewModule {}
+export class ReviewsModule {}

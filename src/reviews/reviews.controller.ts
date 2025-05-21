@@ -1,9 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { ReviewService } from './reviews.service';
+import { UsersService } from 'src/users/users.service';
+import { ReviewsService } from './reviews.service';
 
 @Controller({})
 export class ReviewController {
-  constructor(private readonly ReviewService: ReviewService) {}
+  constructor(
+    private readonly ReviewService: ReviewsService,
+    private readonly UsersService: UsersService,
+  ) {}
 
   @Get('/api/reviews')
   // GET: ~/api/reviews
