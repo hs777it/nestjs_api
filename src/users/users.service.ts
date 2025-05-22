@@ -2,6 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcryptjs';
 import { Repository } from 'typeorm';
+import { LoginDto } from './dtos/login.dto';
 import { RegisterDto } from './dtos/register.dto';
 import { User } from './user.entity';
 
@@ -35,5 +36,23 @@ export class UsersService {
     // @TODO Generate JWT token
     // @TODO Send verification email
     return newUser;
+  }
+
+  /**
+   * Login with email and password
+   * @param loginDto data to login a user
+   * @returns JWT (access token)
+   */
+  public async login(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+
+    const user = await this.usersRepository.findOne({ where: { email } });
+    if (!user) throw new BadRequestException('Invalid email or password');
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) throw new BadRequestException('Invalid password');
+
+    // @TODO Generate JWT token
+    return user;
   }
 }
